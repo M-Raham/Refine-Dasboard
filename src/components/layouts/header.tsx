@@ -1,11 +1,25 @@
-import CurrentUser from "./current-user"
+import { Layout, Space } from "antd";
+import CurrentUser from "./current-user";
 
 const Header = () => {
-  return (
-    <div>
-        <CurrentUser/>
-    </div>
-  )
-}
+  const headerStyles = {
+    background: "#fff",
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    padding: "0px 24px",
+    poaition: "sticky",
+    top: "0",
+    zIndex: "999",
+  };
 
-export default Header
+  return (
+    <Layout.Header style={headerStyles}>
+      <Space align="center" size="middle">
+        <CurrentUser />
+      </Space>
+    </Layout.Header>
+  );
+};
+
+export default Header;
