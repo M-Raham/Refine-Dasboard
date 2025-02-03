@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -15,6 +15,7 @@ import { App as AntdApp } from "antd";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import Layout from "./components/layouts";
+import { resources } from "./config/resources";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               authProvider={authProvider}
+              resources={resources}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
