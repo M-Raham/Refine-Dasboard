@@ -11,43 +11,50 @@ export const authCredentials = {
 export const authProvider: AuthProvider = {
   login: async ({ email }) => {
     try {
-      // call the login mutation
-      // dataProvider.custom is used to make a cuistom t=request to graph API
-      // this will call dataProvider which will go through the fetchWrapper function
       const { data } = await dataProvider.custom({
         url: API_URL,
         method: "post",
-        headers: {},
+        headers: {
+          "Content-Type": "application/json",
+        },
         meta: {
           variables: { email },
-          // pass the email to see if the user exists and if so, return  the accessToken
           rawQuery: `
-                mutation Login($email: String!) {
-                    login(loginInput: {
-                      email: $email
-                    }) {
-                      accessToken,
+                    mutation Login($email: String!) {
+                        login(loginInput: { email: $email }) {
+                            accessToken
+                        }
                     }
-                  }
                 `,
         },
       });
 
-      // save the accessToken in local storage
+      if (!data?.login?.accessToken) {
+        throw new Error("Invalid credentials");
+      }
+
       localStorage.setItem("access_token", data.login.accessToken);
 
       return {
         success: true,
         redirectTo: "/",
       };
-    } catch (e) {
-      const error = e as Error;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          success: false,
+          error: {
+            message: error.message || "Login failed",
+            name: error.name || "Invalid email or password",
+          },
+        };
+      }
 
       return {
         success: false,
         error: {
-          message: "message" in error ? error.message : "Login failed",
-          name: "name" in error ? error.name : "Invalid email or password",
+          message: "An unknown error occurred",
+          name: "UnknownError",
         },
       };
     }
