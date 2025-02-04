@@ -13,6 +13,7 @@
     "@refinedev/nestjs-query": "^1.1.1",
     "@refinedev/react-router": "^1.0.0",
     "antd": "^5.17.0",
+    "dayjs": "^1.11.13",
     "graphql-tag": "^2.12.6",
     "graphql-ws": "^5.9.1",
     "react": "^18.0.0",

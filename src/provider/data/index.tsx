@@ -10,6 +10,11 @@ export const API_URL = `${API_BASE_URL}/graphql`
 export const WS_URL = "wss://api.crm.refine.dev/graphql";
 
 export const client = new GraphQLClient(API_URL, {
+
+  headers: () => ({
+    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+  }),
+
   fetch: (url: string, options: RequestInit) => {
     try {
       return fetchWrapper(url, options);
@@ -24,11 +29,11 @@ export const wsClient =
     ? createClient({
         url: WS_URL,
         connectionParams: () => {
-          const accessTokken = localStorage.getItem("access_tokken");
+          const accessToken = localStorage.getItem("access_token");
 
           return {
             headers: {
-              Authorization: `Bearer ${accessTokken}`,
+              Authorization: `Bearer ${accessToken}`,
             },
           };
         },
