@@ -127,6 +127,7 @@ export type DashboardLatestActivitiesDealsQueryVariables = Types.Exact<{
 
 export type DashboardLatestActivitiesDealsQuery = {
   deals: Pick<Types.DealConnection, "totalCount"> & {
+    
     nodes: Array<
       Pick<Types.Deal, "id" | "title" | "createdAt"> & {
         stage?: Types.Maybe<Pick<Types.DealStage, "id" | "title">>;
