@@ -2,8 +2,6 @@
 
 **Refine Dashboard** is a modern admin panel built with **React, TypeScript, Refine, and GraphQL**, offering seamless data management, powerful CRUD operations, and a user-friendly interface.  
 
-🔗 **Live Demo:** [Refine Dashboard](https://m-raham.github.io/Refine-Dasboard/)  
-
 ---
 
 ## ✨ Features  
